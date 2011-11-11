@@ -31,12 +31,14 @@ include_once('app/fire.php');
  * to access this page.
  */
 
- 
-if(!($auth->checkSession('1'))) {
+if(isset($auth) && is_object($auth)){
+	if(!($auth->checkSession('1'))) {
 		
 		//redirect(URL);
 	
+	}
 }
+
 
 
 /*
@@ -77,19 +79,14 @@ $widgets = array();
  * Default Widgets Here
  * */
 
-$widgets[]=display::getWidgetContent(DIR_WIDGETS_ABS.'login.php');
+$widgets[]=display::getWidgetContent(DIR_WIDGETS_ABS.'widget.php');
 
 
 switch($GLOBALS['global_parameters']['action']) {
 		case 'contact': 
 				$module = display::getPageContent(DIR_MODULES_ABS.'static/contact.php');
 				break;
-		case 'about': 
-				$module = display::getPageContent(DIR_MODULES_ABS.'static/about.php');
-				break;
-		case 'register': 
-				$module = display::getPageContent(DIR_MODULES_ABS.'static/register.php');
-				break;
+		
 				
 				
 		/*
